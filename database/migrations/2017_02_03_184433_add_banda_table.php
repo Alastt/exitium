@@ -15,6 +15,15 @@ class AddBandaTable extends Migration
     {
         Schema::create('banda', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('descripcion');
+            $table->string('genero');
+            $table->integer('lider_id')->unsigned();
+
+            $table->foreign('lider_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

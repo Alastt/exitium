@@ -15,6 +15,14 @@ class AddMensajeTable extends Migration
     {
         Schema::create('mensaje', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('mensaje');
+            $table->string('emisor');
+            $table->integer('receptor_id')->unsigned();
+
+            $table->foreign('receptor_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

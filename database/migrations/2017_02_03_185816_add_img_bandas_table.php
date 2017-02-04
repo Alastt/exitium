@@ -15,6 +15,13 @@ class AddImgBandasTable extends Migration
     {
         Schema::create('img_bandas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('banda_id')->unsigned();
+
+            $table->foreign('banda_id')
+                ->references('id')->on('banda')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

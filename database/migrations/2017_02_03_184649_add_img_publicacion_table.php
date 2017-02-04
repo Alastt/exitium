@@ -15,6 +15,13 @@ class AddImgPublicacionTable extends Migration
     {
         Schema::create('img_publicacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('post_id')->unsigned();
+
+            $table->foreign('post_id')
+                ->references('id')->on('publicacion')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

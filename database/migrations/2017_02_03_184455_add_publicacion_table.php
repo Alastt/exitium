@@ -15,6 +15,13 @@ class AddPublicacionTable extends Migration
     {
         Schema::create('publicacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('contenido');
+            $table->integer('banda_id')->unsigned();
+
+            $table->foreign('banda_id')
+                ->references('id')->on('banda')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

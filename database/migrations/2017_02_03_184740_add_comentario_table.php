@@ -15,6 +15,18 @@ class AddComentarioTable extends Migration
     {
         Schema::create('comentario', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('comentario');
+            $table->integer('user_id')->unsigned();
+            $table->integer('post_id')->unsigned();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('post_id')
+                ->references('id')->on('publicacion')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
